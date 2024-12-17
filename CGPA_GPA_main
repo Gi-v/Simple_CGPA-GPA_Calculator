@@ -4,7 +4,7 @@
 using namespace std;
 
 const int MAX_SUBJECTS = 10; // Maximum number of subjects
-const int MAX_SEMESTERS = 8 ; // Maximum number of semesters
+const int MAX_SEMESTERS = 10; // Maximum number of semesters
 
 void calculateGPA();
 void calculateCGPA();
@@ -50,7 +50,7 @@ int main() {
 
 void calculateGPA() {
     int subjects;     
-    cout << "\n ********** Calculating GPA ************" << endl;
+    cout << "\n •••••••• Calculating GPA ••••••••" << endl;
     cout << "Please tell the amount of subjects you want to calculate. (Max " << MAX_SUBJECTS << "): ";
     cin >> subjects; // Get number of subjects from user
 
@@ -83,24 +83,24 @@ void calculateGPA() {
         }
     }
 
-    float totalNumbers = 0;  //Variable to store total numbers earned in the subjects
-    float totalCreditHour = 0; //Variable to store total credit hours
+    float totalNumbers = 0;  // Variable to store total numbers earned in the subjects
+    float totalCreditHour = 0; // Variable to store total credit hours
 
     for (int i = 0; i < subjects; i++) {
-        totalNumbers += creditHour[i] * numbers[i]; //Calculate total numbers earned
+        totalNumbers += creditHour[i] * numbers[i]; // Calculate total numbers earned
         totalCreditHour += creditHour[i]; //
-                //Sum of all credit hours
+                // Sum of all credit hours
             }
 
             if (totalCreditHour == 0) {
                 cout << "Credit hours cannot be zero. Please enter valid input." << endl;
-                return; //Exit if credit hours is zero
+                return; // Exit if credit hours is zero
             }
 
-            float gpa = totalNumbers / totalCreditHour; //Calculate GPA
-            cout << "Total GPA: " << gpa << endl; //Display GPA
+            float gpa = totalNumbers / totalCreditHour; // Calculate GPA
+            cout << "Total GPA: " << gpa << endl; // Display GPA
 
-            //Save the result to a file
+            // Save the result to a file
             string result = "GPA: " + to_string(gpa);
             saveResultsToFile(result);
         }
@@ -126,11 +126,11 @@ void calculateGPA() {
                 // Validate GPA
                 if (semesterGPA[i] < 0.0 || semesterGPA[i] > 4.0) {
                     cout << "GPA must be between 0.0 and 4.0. Please enter a valid number." << endl;
-                    return; //Exit if invalid
+                    return; // Exit if invalid
                 }
             }
 
-            float totalGPA = 0; //Variable to store total GPA
+            float totalGPA = 0; // Variable to store total GPA
             for (int i = 0; i < semesters; i++) {
                 totalGPA += semesterGPA[i]; // Sum of all GPA added to total GPA
             }
@@ -150,25 +150,26 @@ void calculateGPA() {
             cout << "CGPA = Sum of GPA / Number of Semesters" << endl;
         }
 
-        void saveResultsToFile(const string& result){
+        void saveResultsToFile(const string& result) {
             ofstream outFile("results.txt", ios::app); // Open file in append mode
             if (outFile.is_open()) {
                 outFile << result << endl; // Write the result to the file
                 outFile.close(); // Close the file
-                cout <<"Result saved to results.txt" <<endl;
+                cout << "Result saved to results.txt" << endl;
             } else {
-                cout <<"Unable to open file for writing." <<endl;
+                cout << "Unable to open file for writing." << endl;
             }
         }
-         void loadResultsFromFile(string& result){
+        
+        void loadResultsFromFile(string& result) {
             ifstream inFile("results.txt"); // Open file for reading
-            if(inFile.is_open()) {
+            if (inFile.is_open()) {
             string line;
                 cout << "Previous results:" << endl;
-                while (getline(inFile, line)){
-                    cout << line << endl; //Read and display each line
+                while (getline(inFile, line)) {
+                    cout << line << endl; // Read and display each line
                 }
-              inFile.close(); //Close the file
+              inFile.close(); // Close the file
             } else {
                 cout << "Unable to open file for reading." << endl;
            }
