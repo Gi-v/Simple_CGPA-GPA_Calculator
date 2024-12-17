@@ -4,7 +4,7 @@
 using namespace std;
 
 const int MAX_SUBJECTS = 10; // Maximum number of subjects
-const int MAX_SEMESTERS = 10; // Maximum number of semesters
+const int MAX_SEMESTERS = 8; // Maximum number of semesters
 
 void calculateGPA();
 void calculateCGPA();
@@ -50,7 +50,7 @@ int main() {
 
 void calculateGPA() {
     int subjects;     
-    cout << "\n •••••••• Calculating GPA ••••••••" << endl;
+    cout << "\n ******** Calculating GPA ********" << endl;
     cout << "Please tell the amount of subjects you want to calculate. (Max " << MAX_SUBJECTS << "): ";
     cin >> subjects; // Get number of subjects from user
 
