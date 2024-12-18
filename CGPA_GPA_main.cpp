@@ -10,24 +10,31 @@ void calculateGPA();
 void calculateCGPA();
 void methodOfCalculating();
 void saveResultsToFile(const string& result);
-void loadResultsFromFile(string& result);
+void loadResultsFromFile();
+bool isNumeric(const string &input);
 
 int main() {
     int input;
-    string results;
+    string results,userInput;
     // Loop used to display the menu until the user chooses to exit
     while (true) {
         cout << "-------- GPA & CGPA Calculator ------- " << endl;
         cout << endl;
-        cout << "     Menu : \n" << endl;
+        cout << "  |------Menu------| \n" << endl;
         cout << "  1. Calculate GPA (Grade Point Average)" << endl;
         cout << "  2. Calculate CGPA (Cumulative Grade Point Average)" << endl;
         cout << "  3. Method to find GPA & CGPA" << endl;
-        cout << "  4. Exit Application" << endl;
+        cout << "  4. Load calculated results" << endl;
+        cout << "  5. Exit Application" << endl;
         cout << endl;
         cout << "Enter your choice: ";
-        cin >> input;
+        cin >> userInput;
 
+        if(!isNumeric(userInput)){
+            cout << "Invalid input.Please enter a number between 1 and 4 \n "<<endl;
+            continue;
+        }
+        input = stoi(userInput);
         // Switch case used to call the function according to the user input 
         switch (input) {
             case 1:
@@ -40,10 +47,13 @@ int main() {
                 methodOfCalculating(); // Call function to show method for calculating GPA & CGPA
                 break;
             case 4:
+                loadResultsFromFile();
+                break;
+                case 5:
                 cout << "Exiting the application. Goodbye!" << endl;
                 return 0; // Exit the program
             default:
-                cout << "You have entered the wrong input. Try again!" << endl;
+                cout << "Invalid input.Please enter a number between 1 and 4 \n " << endl;
         }
     }
 }
@@ -161,7 +171,7 @@ void calculateGPA() {
             }
         }
         
-        void loadResultsFromFile(string& result) {
+        void loadResultsFromFile() {
             ifstream inFile("results.txt"); // Open file for reading
             if (inFile.is_open()) {
             string line;
@@ -173,4 +183,12 @@ void calculateGPA() {
             } else {
                 cout << "Unable to open file for reading." << endl;
            }
+}
+bool isNumeric(const string &input){
+    for (char c : input) {
+        if (c < '0' || c > '9') { // Check if any character is not a digit
+            return false;
+        }
+    }
+    return true;
 }
