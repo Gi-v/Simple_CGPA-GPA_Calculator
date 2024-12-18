@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-const int MAX_SUBJECTS = 10; // Maximum number of subjects
+const int MAX_SUBJECTS = 10; // Maximum number of subjects. const usewd so it stores value as int and cant be changed later 
 const int MAX_SEMESTERS = 8; // Maximum number of semesters
 
 void calculateGPA();
@@ -11,6 +11,7 @@ void calculateCGPA();
 void methodOfCalculating();
 void saveResultsToFile(const string& result);
 void loadResultsFromFile();
+void helpFunction();
 bool isNumeric(const string &input);
 
 int main() {
@@ -25,7 +26,8 @@ int main() {
         cout << "  2. Calculate CGPA (Cumulative Grade Point Average)" << endl;
         cout << "  3. Method to find GPA & CGPA" << endl;
         cout << "  4. Load calculated results" << endl;
-        cout << "  5. Exit Application" << endl;
+        cout << "  5. How to perform the operation << endl;
+        cout << "  6. Exit Application" << endl;
         cout << endl;
         cout << "Enter your choice: ";
         cin >> userInput;
@@ -34,7 +36,7 @@ int main() {
             cout << "Invalid input.Please enter a number between 1 and 4 \n "<<endl;
             continue;
         }
-        input = stoi(userInput);
+        input = stoi(userInput); // stoi for string to integer. Trys to convert userinput of string to input for switch function
         // Switch case used to call the function according to the user input 
         switch (input) {
             case 1:
@@ -50,7 +52,10 @@ int main() {
                 loadResultsFromFile();
                 break;
                 case 5:
-                cout << "Exiting the application. Goodbye!" << endl;
+                helpFunction();
+                break;
+            case 6;
+            cout << "Exiting the application. Goodbye!" << endl;
                 return 0; // Exit the program
             default:
                 cout << "Invalid input.Please enter a number between 1 and 4 \n " << endl;
@@ -71,7 +76,7 @@ void calculateGPA() {
     }
 
     // Arrays used to store subject credit hours and grades
-    float creditHour[MAX_SUBJECTS];
+    float creditHour[MAX_SUBJECTS]; // size of array is the max num of subjects
     float numbers[MAX_SUBJECTS];
 
     // Loop to get subject credit hours and grades from user
@@ -111,8 +116,8 @@ void calculateGPA() {
             cout << "Total GPA: " << gpa << endl; // Display GPA
 
             // Save the result to a file
-            string result = "GPA: " + to_string(gpa);
-            saveResultsToFile(result);
+            string result = "GPA: " + to_string(gpa); // converts the numerical value of gpa to string using this
+            saveResultsToFile(result); // saves results to the file
         }
 
         void calculateCGPA() {
@@ -191,4 +196,38 @@ bool isNumeric(const string &input){
         }
     }
     return true;
+}
+void helpFunction() {
+    cout << "\n******** Help Information ********" << endl;
+    cout << "This application allows you to calculate your GPA (Grade Point Average) and CGPA (Cumulative Grade Point Average)." << endl;
+    cout << "Here are some instructions on how to use the application:" << endl;
+    cout << "1. Calculate GPA:" << endl;
+    cout << "   - You will be prompted to enter the number of subjects." << endl;
+    cout << "   - For each subject, enter the number of credit hours and the grade earned (between 0.0 and 4.0)." << endl;
+    cout << "   - The application will calculate and display your GPA." << endl;
+    cout << "   - The GPA will also be saved to a file for future reference." << endl;
+    cout << endl;
+    cout << "2. Calculate CGPA:" << endl;
+    cout << "   - You will be prompted to enter the number of semesters." << endl;
+    cout << "   - For each semester, enter the GPA earned (between 0.0 and 4.0)." << endl;
+    cout << "   - The application will calculate and display your CGPA." << endl;
+    cout << "   - The CGPA will also be saved to a file for future reference." << endl;
+    cout << endl;
+    cout << "3. Method to find GPA & CGPA:" << endl;
+    cout << "   - This option will display the formulas used to calculate GPA and CGPA." << endl;
+    cout << endl;
+    cout << "4. Load calculated results:" << endl;
+    cout << "   - This option will display previously saved GPA and CGPA results from the file." << endl;
+    cout << endl;
+    cout << "5. Clear saved results:" << endl;
+    cout << "   - This option will clear all previously saved results from the file." << endl;
+    cout << endl;
+    cout << "6. Calculate Highest and Lowest GPA:" << endl;
+    cout << "   - This option allows you to input multiple GPAs and find the highest and lowest among them." << endl;
+    cout << endl;
+    cout << "7. Exit Application:" << endl;
+    cout << "   - This option will exit the application." << endl;
+    cout << endl;
+    cout << "Please follow the prompts carefully and enter valid data." << endl;
+    cout << "************************************" << endl;
 }
